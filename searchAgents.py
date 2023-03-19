@@ -31,6 +31,12 @@ class SearchStrategy:
         directions.append("Stop")
         return directions
     
+    def get_priority(self, queue, vertex):
+        for item in queue:
+            if item[1] == vertex:
+                return item[0]
+        return None
+    
 class BFS(SearchStrategy):
     def search(self, g: SingleFoodSearchProblem, src: tuple , dst: tuple) -> tuple:
         expanded = [] # list of expanded vertices in the traversal order
@@ -94,12 +100,7 @@ class UCS(SearchStrategy):
                             pq.items.remove((self.get_priority(pq.items, v), v))
                         pq.push(v, priority)
         return [], []
-    
-    def get_priority(self, queue, vertex):
-        for item in queue:
-            if item[1] == vertex:
-                return item[0]
-        return None
+   
 
 class DFS(SearchStrategy):
     def search(self, g: SingleFoodSearchProblem, src: tuple , dst: tuple) -> tuple:
@@ -166,11 +167,6 @@ class Astar(SearchStrategy):
                     pq.push(v, priority)
         return [], []
     
-    def get_priority(self, queue, vertex):
-        for item in queue:
-            if item[1] == vertex:
-                return item[0]
-        return None
 
 pac_man = SingleFoodSearchProblem("pacman_single01.txt")
 bfs  = BFS()
