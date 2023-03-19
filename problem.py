@@ -188,7 +188,7 @@ class MultiFoodSearchProblem:
                 actions.append(next_state)
                 now = next_state
             actions.append('Stop')
-        actions.pop()
+        
         
         while actions:
             os.system('cls' if os.name == 'nt' else 'clear')
